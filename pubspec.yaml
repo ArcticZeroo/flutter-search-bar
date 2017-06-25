@@ -1,6 +1,6 @@
 name: search_bar
-description: A starting point for Dart libraries or applications.
-version: 0.0.1
+description: A (mostly) automatic search bar inside an AppBar for flutter
+version: 1.0.0
 homepage: https://frozor.io
 author: Spencer <spencer@frozor.io>
 

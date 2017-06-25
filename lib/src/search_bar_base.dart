@@ -29,7 +29,15 @@ class SearchBar {
   /// The last built default AppBar used for colors and such.
   AppBar _defaultAppBar;
 
-  SearchBar({this.inBar = true, this.colorBackButton = true, this.hintText, this.onSubmitted, this.buildDefaultAppBar, @required this.setState, this.closeOnSubmit = true});
+  SearchBar({
+    @required this.setState,
+    @required this.buildDefaultAppBar,
+    this.onSubmitted,
+    this.hintText = 'Search',
+    this.inBar = true,
+    this.colorBackButton = true,
+    this.closeOnSubmit = true
+  });
 
   /// Initializes the search bar.
   ///
@@ -68,11 +76,12 @@ class SearchBar {
 
     return new AppBar(
       leading: new BackButton(
+          // Color the back button grey
           color: inBar
-              ? Colors.grey.shade400
+              ? null
               : (colorBackButton
               ? _defaultAppBar.backgroundColor
-              : null)
+              : Colors.grey.shade400)
 
       ),
       backgroundColor: inBar ? _defaultAppBar.backgroundColor : theme.canvasColor,
@@ -84,7 +93,7 @@ class SearchBar {
             fontSize: 16.0
         ),
         decoration: new InputDecoration(
-            hintText: hintText ?? 'Search',
+            hintText: hintText,
             hintStyle: new TextStyle(
                 color: inBar ? Colors.white70 : Colors.black54,
                 fontSize: 16.0
