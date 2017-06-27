@@ -91,7 +91,7 @@ _AppBar \_defaultAppBar_ - The last built default app bar.
 
 #### getSearchAction
 `IconButton getSearchAction(BuildContext context)`
-This takes `context` as an argument, and returns an IconButton suitable for an Action in an AppBar. If you want your SearchBar to actually work, put this inside your `buildDefaultAppBar` method.
+This takes `context` as an argument, and returns an IconButton suitable for an Action in an AppBar. If you want your SearchBar to actually work, put this inside your `buildDefaultAppBar`pub  method.
 
 
 #### build

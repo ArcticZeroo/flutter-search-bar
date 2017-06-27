@@ -1,6 +1,6 @@
-name: search_bar
+name: flutter_search_bar
 description: A (mostly) automatic search bar inside an AppBar for flutter
-version: 1.0.0
+version: 1.0.4
 homepage: https://frozor.io
 author: Spencer <spencer@frozor.io>
 
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  meta: ^1.0.5
 
 flutter:
   uses-material-design: true

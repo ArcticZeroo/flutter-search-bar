@@ -1,6 +1,7 @@
 // Copyright (c) 2017, Spencer. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -23,6 +24,8 @@ class SearchBar {
   final TextFieldSubmitCallback onSubmitted;
   /// Since this should be inside of a State class, just pass setState to this.
   final SetStateCallback setState;
+  /// The controller to be used in the textField.
+  final TextEditingController controller;
 
   /// Whether search is currently active.
   bool _isSearching = false;
@@ -33,6 +36,7 @@ class SearchBar {
     @required this.setState,
     @required this.buildDefaultAppBar,
     this.onSubmitted,
+    this.controller,
     this.hintText = 'Search',
     this.inBar = true,
     this.colorBackButton = true,
@@ -44,11 +48,11 @@ class SearchBar {
   /// This adds a new route that listens for onRemove (and stops the search when that happens), and then calls [setState] to rebuild and start the search.
   void beginSearch(context) {
     ModalRoute.of(context).addLocalHistoryEntry(new LocalHistoryEntry(
-        onRemove: () {
-          setState(() {
-            _isSearching = false;
-          });
-        }
+      onRemove: () {
+        setState(() {
+          _isSearching = false;
+        });
+      }
     ));
 
     setState(() {
@@ -76,12 +80,8 @@ class SearchBar {
 
     return new AppBar(
       leading: new BackButton(
-          // Color the back button grey
-          color: inBar
-              ? null
-              : (colorBackButton
-              ? _defaultAppBar.backgroundColor
-              : Colors.grey.shade400)
+        // Don't provide a color (make it white) if it's in the bar, otherwise color it or set it to grey.
+        color: inBar ? null : (colorBackButton ? _defaultAppBar.backgroundColor ?? theme.primaryColor ?? Colors.grey.shade400 : Colors.grey.shade400)
 
       ),
       backgroundColor: inBar ? _defaultAppBar.backgroundColor : theme.canvasColor,
@@ -89,25 +89,26 @@ class SearchBar {
         key: new Key('SearchBarTextField'),
         keyboardType: TextInputType.text,
         style: new TextStyle(
-            color: inBar ? Colors.white70 : Colors.black54,
-            fontSize: 16.0
+          color: inBar ? Colors.white70 : Colors.black54,
+          fontSize: 16.0
         ),
         decoration: new InputDecoration(
-            hintText: hintText,
-            hintStyle: new TextStyle(
-                color: inBar ? Colors.white70 : Colors.black54,
-                fontSize: 16.0
-            ),
-            hideDivider: true
+          hintText: hintText,
+          hintStyle: new TextStyle(
+            color: inBar ? Colors.white70 : Colors.black54,
+            fontSize: 16.0
+          ),
+          hideDivider: true
         ),
-        onSubmitted: (String val) {
+        onSubmitted: (String val) async {
           if (closeOnSubmit) {
-            Navigator.maybePop(context);
+            await Navigator.maybePop(context);
           }
 
           onSubmitted(val);
         },
         autofocus: true,
+        controller: controller,
       ),
       /*actions: <Widget>[
         new IconButton(
@@ -123,10 +124,10 @@ class SearchBar {
   /// Put this inside your [buildDefaultAppBar] method!
   IconButton getSearchAction(BuildContext context) {
     return new IconButton(
-        icon: new Icon(Icons.search),
-        onPressed: () {
-          beginSearch(context);
-        }
+      icon: new Icon(Icons.search),
+      onPressed: () {
+        beginSearch(context);
+      }
     );
   }
 
