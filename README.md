@@ -2,6 +2,10 @@
 
 A simple and mostly automatic material search bar for flutter (dart).
 
+## Screenshots
+
+SoonTM
+
 ## Usage
 
 A simple usage example:
