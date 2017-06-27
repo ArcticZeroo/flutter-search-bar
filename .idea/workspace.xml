@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fd3ff43d-5b9a-4ea9-838f-1263ac4c0ab6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGELOG.md" afterPath="$PROJECT_DIR$/CHANGELOG.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/example/search_bar_example.dart" afterPath="$PROJECT_DIR$/example/flutter_search_bar_example.dart" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/search_bar.dart" afterPath="$PROJECT_DIR$/lib/flutter_search_bar.dart" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/src/search_bar_base.dart" afterPath="$PROJECT_DIR$/lib/src/flutter_search_bar_base.dart" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +16,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pubspec.yaml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pubspec.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
@@ -56,20 +51,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="534">
-                <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
+              <first_editor relative-caret-position="85">
+                <caret line="4" column="149" lean-forward="false" selection-start-line="4" selection-start-column="149" selection-end-line="4" selection-end-column="149" />
                 <folding>
-                  <marker date="1498417434000" expanded="true" signature="177:685" ph="{...}" />
-                  <marker date="1498417434000" expanded="true" signature="248:374" ph="{...}" />
-                  <marker date="1498417434000" expanded="true" signature="401:554" ph="{...}" />
-                  <marker date="1498417434000" expanded="true" signature="607:683" ph="{...}" />
+                  <marker date="1498594106000" expanded="true" signature="360:868" ph="{...}" />
+                  <marker date="1498594106000" expanded="true" signature="431:557" ph="{...}" />
+                  <marker date="1498594106000" expanded="true" signature="584:737" ph="{...}" />
+                  <marker date="1498594106000" expanded="true" signature="790:866" ph="{...}" />
                 </folding>
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -112,7 +117,6 @@
       <list>
         <option value="$PROJECT_DIR$/test/search_bar_test.dart" />
         <option value="$PROJECT_DIR$/example/search_bar_example.dart" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/lib/src/search_bar_base.dart" />
         <option value="$PROJECT_DIR$/lib/search_bar.dart" />
         <option value="$PROJECT_DIR$/example/flutter_search_bar_example.dart" />
@@ -120,6 +124,7 @@
         <option value="$PROJECT_DIR$/lib/src/flutter_search_bar_base.dart" />
         <option value="$PROJECT_DIR$/CHANGELOG.md" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -715,7 +720,7 @@
       <workItem from="1498273274182" duration="16547000" />
       <workItem from="1498413434048" duration="5155000" />
       <workItem from="1498446374793" duration="1216000" />
-      <workItem from="1498519738674" duration="6779000" />
+      <workItem from="1498519738674" duration="7038000" />
     </task>
     <task id="LOCAL-00001" summary="First working version! &#10;&#10;Not yet set up correctly for pub but almost there.">
       <created>1498412702973</created>
@@ -731,11 +736,32 @@
       <option name="project" value="LOCAL" />
       <updated>1498417408163</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- Fix an issue where null backgroundColor in appBar caused a white back button&#10;- Fix an issue where calling `Navigator.pop` methods inside `onSubmit` caused NPEs&#10;- Add support for controller in the TextField (as a `controller` property in the constructor of `SearchBar`)&#10;Versions 1.0.1 - 1.0.4">
+      <created>1498593922716</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1498593922716</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add .gitignore">
+      <created>1498594028517</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1498594028517</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update readme to have a screenshots section -- will add on web github since images are being dumb here.">
+      <created>1498594051658</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1498594051658</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29890000" />
+    <option name="totallyTimeSpent" value="30149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -782,7 +808,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First working version! &#10;&#10;Not yet set up correctly for pub but almost there." />
     <MESSAGE value="Documentation ahoy!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentation ahoy!" />
+    <MESSAGE value="- Fix an issue where null backgroundColor in appBar caused a white back button&#10;- Fix an issue where calling `Navigator.pop` methods inside `onSubmit` caused NPEs&#10;- Add support for controller in the TextField (as a `controller` property in the constructor of `SearchBar`)&#10;Versions 1.0.1 - 1.0.4" />
+    <MESSAGE value="Add .gitignore" />
+    <MESSAGE value="Update readme to have a screenshots section -- will add on web github since images are being dumb here." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update readme to have a screenshots section -- will add on web github since images are being dumb here." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -817,10 +846,10 @@
           <first_editor relative-caret-position="1479">
             <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
             <folding>
-              <marker date="1498417434000" expanded="true" signature="177:685" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="248:374" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="401:554" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="607:683" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="360:868" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="431:557" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="584:737" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="790:866" ph="{...}" />
             </folding>
           </first_editor>
           <second_editor />
@@ -851,10 +880,10 @@
           <first_editor relative-caret-position="1479">
             <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
             <folding>
-              <marker date="1498417434000" expanded="true" signature="177:685" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="248:374" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="401:554" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="607:683" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="360:868" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="431:557" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="584:737" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="790:866" ph="{...}" />
             </folding>
           </first_editor>
           <second_editor />
@@ -1025,27 +1054,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="534">
-            <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
-            <folding>
-              <marker date="1498417434000" expanded="true" signature="177:685" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="248:374" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="401:554" ph="{...}" />
-              <marker date="1498417434000" expanded="true" signature="607:683" ph="{...}" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="85">
+            <caret line="4" column="149" lean-forward="false" selection-start-line="4" selection-start-column="149" selection-end-line="4" selection-end-column="149" />
+            <folding>
+              <marker date="1498594106000" expanded="true" signature="360:868" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="431:557" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="584:737" ph="{...}" />
+              <marker date="1498594106000" expanded="true" signature="790:866" ph="{...}" />
+            </folding>
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

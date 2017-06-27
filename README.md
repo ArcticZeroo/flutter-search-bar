@@ -1,6 +1,8 @@
-# search_bar
+# flutter_search_bar
 
 A simple and mostly automatic material search bar for flutter (dart).
+
+Note: use `flutter_search_bar` and not `search_bar` -- I own both packages but I'm just a tad bit locked out of `search_bar`, so it won't be updated.
 
 ## Screenshots
 
