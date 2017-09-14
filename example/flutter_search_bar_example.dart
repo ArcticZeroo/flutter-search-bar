@@ -2,7 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_search_bar/search_bar.dart';
+import 'package:flutter_search_bar/flutter_search_bar.dart';
 
 void main() {
   runApp(new SearchBarDemoApp());
