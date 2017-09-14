@@ -31,7 +31,8 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
 
   AppBar buildAppBar(BuildContext context) {
     return new AppBar(
-        title: new Text('Search Bar Demo')
+        title: new Text('Search Bar Demo'),
+        actions: [searchBar.getSearchAction(context)]
     );
   }
 
