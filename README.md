@@ -26,7 +26,7 @@ A simple usage example:
 class _MyHomePageState extends State<MyHomePage> {
   SearchBar searchBar;
   
-  AppBar buildAppbar(BuildContext context) {
+  AppBar buildAppBar(BuildContext context) {
     return new AppBar(
       title: new Text('My Home Page'),
       actions: [searchBar.getSearchAction(context)]
