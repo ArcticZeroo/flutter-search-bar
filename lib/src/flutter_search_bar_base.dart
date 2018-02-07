@@ -1,13 +1,12 @@
 // Copyright (c) 2017, Spencer. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 typedef AppBar AppBarCallback(BuildContext context);
 typedef void TextFieldSubmitCallback(String value);
-typedef void SetStateCallback(fn);
+typedef void SetStateCallback(void fn());
 
 class SearchBar {
   /// Whether the search should take place "in the existing search bar", meaning whether it has the same background or a flipped one. Defaults to true.
@@ -98,7 +97,7 @@ class SearchBar {
             color: inBar ? Colors.white70 : Colors.black54,
             fontSize: 16.0
           ),
-          hideDivider: true
+          border: null
         ),
         onSubmitted: (String val) async {
           if (closeOnSubmit) {
