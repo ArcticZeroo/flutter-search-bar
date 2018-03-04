@@ -2,6 +2,7 @@
   <library name="Dart SDK">
     <CLASSES>
       <root url="file://C:/flutter/bin/cache/dart-sdk/lib/async" />
+      <root url="file://C:/flutter/bin/cache/dart-sdk/lib/cli" />
       <root url="file://C:/flutter/bin/cache/dart-sdk/lib/collection" />
       <root url="file://C:/flutter/bin/cache/dart-sdk/lib/convert" />
       <root url="file://C:/flutter/bin/cache/dart-sdk/lib/core" />
