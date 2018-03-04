@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+
+- Add a clear button option to the search bar, which will obviously clear all text when pressed. It's greyed out when there is no text in the bar.
+- Replace the named 'hideDivider' property with 'border' to support the newest version of flutter
+
 ## 1.0.4
 
 - Add support for controller in the TextField
