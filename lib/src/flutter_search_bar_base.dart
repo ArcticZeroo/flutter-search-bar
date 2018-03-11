@@ -91,6 +91,9 @@ class SearchBar {
     });
   }
 
+  /// Whether search is currently active.
+  bool get isSearching => _isSearching;
+
   /// Initializes the search bar.
   ///
   /// This adds a new route that listens for onRemove (and stops the search when that happens), and then calls [setState] to rebuild and start the search.
