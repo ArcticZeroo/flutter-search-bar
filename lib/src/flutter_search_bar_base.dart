@@ -71,14 +71,10 @@ class SearchBar {
     }
 
     this.controller.addListener(() {
-      print('is empty: ' + controller.text.isEmpty.toString());
-      print('value of clearActive: ' + _clearActive.toString());
-
       if (this.controller.text.isEmpty) {
         // If clear is already disabled, don't disable it
         if (_clearActive) {
           setState(() {
-            print('Setting clear to inactive');
             _clearActive = false;
           });
         }
@@ -89,7 +85,6 @@ class SearchBar {
       // If clear is already enabled, don't enable it
       if (!_clearActive) {
         setState(() {
-          print('Setting clear to active');
           _clearActive = true;
         });
       }
@@ -144,34 +139,37 @@ class SearchBar {
         color: buttonColor
       ),
       backgroundColor: barColor,
-      title: new TextField(
-        key: new Key('SearchBarTextField'),
-        keyboardType: TextInputType.text,
-        style: new TextStyle(
-          color: textColor,
-          fontSize: 16.0
-        ),
-        decoration: new InputDecoration(
-          hintText: hintText,
-          hintStyle: new TextStyle(
-            color: textColor,
-            fontSize: 16.0
+      title: new Directionality(
+        textDirection: Directionality.of(context),
+        child: new TextField(
+          key: new Key('SearchBarTextField'),
+          keyboardType: TextInputType.text,
+          style: new TextStyle(
+              color: textColor,
+              fontSize: 16.0
           ),
-          border: null
-        ),
-        onSubmitted: (String val) async {
-          if (closeOnSubmit) {
-            await Navigator.maybePop(context);
-          }
+          decoration: new InputDecoration(
+              hintText: hintText,
+              hintStyle: new TextStyle(
+                  color: textColor,
+                  fontSize: 16.0
+              ),
+              border: null
+          ),
+          onSubmitted: (String val) async {
+            if (closeOnSubmit) {
+              await Navigator.maybePop(context);
+            }
 
-          if (clearOnSubmit) {
-            controller.clear();
-          }
+            if (clearOnSubmit) {
+              controller.clear();
+            }
 
-          onSubmitted(val);
-        },
-        autofocus: true,
-        controller: controller,
+            onSubmitted(val);
+          },
+          autofocus: true,
+          controller: controller,
+        )
       ),
       actions: !showClearButton ? null : <Widget>[
         // Show an icon if clear is not active, so there's no ripple on tap

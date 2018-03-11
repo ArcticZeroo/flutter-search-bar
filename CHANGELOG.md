@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1
+
+- Remove a bunch of extra debug. Whoops!
+- Adds support for RTL automagically using Directionality
+
 ## 2.0.0
 
 - Add a clear button option to the search bar, which will obviously clear all text when pressed. It's greyed out when there is no text in the bar.
