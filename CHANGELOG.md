@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.2
+- Add SearchBar.isSearching property to tell whether search is currently active
+
 ## 2.0.1
 
 - Remove a bunch of extra debug. Whoops!
