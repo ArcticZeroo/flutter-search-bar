@@ -18,9 +18,6 @@ class SearchBar {
   /// Whether or not the search bar should close on submit. Defaults to true.
   final bool closeOnSubmit;
 
-  /// What the hintText on the search bar should be. Defaults to 'Search'.
-  final String hintText;
-
   /// Whether the text field should be cleared when it is submitted
   final bool clearOnSubmit;
 
@@ -35,6 +32,9 @@ class SearchBar {
 
   /// Whether or not the search bar should add a clear input button, defaults to true.
   final bool showClearButton;
+
+  /// What the hintText on the search bar should be. Defaults to 'Search'.
+  String hintText;
 
   /// The controller to be used in the textField.
   TextEditingController controller;
