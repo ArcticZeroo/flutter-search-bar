@@ -102,4 +102,5 @@ $RECYCLE.BIN/
 *.lnk
 
 screenshots/
-.idea/workspace.xml
+workspace.xml
+example/

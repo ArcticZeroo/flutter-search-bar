@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.3
+- SearchBar.hintText is no longer final or required so you can now assign it values after initialization (e.g. for i18n)
+
 ## 2.0.2
 - Add SearchBar.isSearching property to tell whether search is currently active
 
