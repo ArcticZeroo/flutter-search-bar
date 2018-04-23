@@ -2,6 +2,7 @@ name: example
 description: An example for the flutter_search_bar module
 
 dependencies:
+  flutter_search_bar: any
   flutter:
     sdk: flutter
 
