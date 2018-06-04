@@ -2,10 +2,10 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 typedef AppBar AppBarCallback(BuildContext context);
 typedef void TextFieldSubmitCallback(String value);
+typedef void TextFieldChangedCallback(String value);
 typedef void SetStateCallback(void fn());
 
 class SearchBar {
@@ -26,6 +26,8 @@ class SearchBar {
 
   /// A void callback which takes a string as an argument, this is fired every time the search is submitted. Do what you want with the result.
   final TextFieldSubmitCallback onSubmitted;
+
+  final TextFieldChangedCallback onChanged;
 
   /// Since this should be inside of a State class, just pass setState to this.
   final SetStateCallback setState;
@@ -49,9 +51,10 @@ class SearchBar {
   AppBar _defaultAppBar;
 
   SearchBar({
-    @required this.setState,
-    @required this.buildDefaultAppBar,
+    this.buildDefaultAppBar,
+    this.setState,
     this.onSubmitted,
+    this.onChanged,
     this.controller,
     this.hintText = 'Search',
     this.inBar = true,
@@ -99,11 +102,11 @@ class SearchBar {
   /// This adds a new route that listens for onRemove (and stops the search when that happens), and then calls [setState] to rebuild and start the search.
   void beginSearch(context) {
     ModalRoute.of(context).addLocalHistoryEntry(new LocalHistoryEntry(
-      onRemove: () {
-        setState(() {
-          _isSearching = false;
-        });
-      }
+        onRemove: () {
+          setState(() {
+            _isSearching = false;
+          });
+        }
     ));
 
     setState(() {
@@ -139,40 +142,43 @@ class SearchBar {
 
     return new AppBar(
       leading: new BackButton(
-        color: buttonColor
+          color: buttonColor
       ),
       backgroundColor: barColor,
       title: new Directionality(
-        textDirection: Directionality.of(context),
-        child: new TextField(
-          key: new Key('SearchBarTextField'),
-          keyboardType: TextInputType.text,
-          style: new TextStyle(
-              color: textColor,
-              fontSize: 16.0
-          ),
-          decoration: new InputDecoration(
-              hintText: hintText,
-              hintStyle: new TextStyle(
-                  color: textColor,
-                  fontSize: 16.0
-              ),
-              border: null
-          ),
-          onSubmitted: (String val) async {
-            if (closeOnSubmit) {
-              await Navigator.maybePop(context);
-            }
+          textDirection: Directionality.of(context),
+          child: new TextField(
+            key: new Key('SearchBarTextField'),
+            keyboardType: TextInputType.text,
+            style: new TextStyle(
+                color: textColor,
+                fontSize: 16.0
+            ),
+            decoration: new InputDecoration(
+                hintText: hintText,
+                hintStyle: new TextStyle(
+                    color: textColor,
+                    fontSize: 16.0
+                ),
+                border: null
+            ),
+            onChanged: (String val){
+              onChanged(val);
+            },
+            onSubmitted: (String val) async {
+              if (closeOnSubmit) {
+                await Navigator.maybePop(context);
+              }
 
-            if (clearOnSubmit) {
-              controller.clear();
-            }
+              if (clearOnSubmit) {
+                controller.clear();
+              }
 
-            onSubmitted(val);
-          },
-          autofocus: true,
-          controller: controller,
-        )
+              onSubmitted(val);
+            },
+            autofocus: true,
+            controller: controller,
+          )
       ),
       actions: !showClearButton ? null : <Widget>[
         // Show an icon if clear is not active, so there's no ripple on tap
@@ -189,10 +195,10 @@ class SearchBar {
   /// Put this inside your [buildDefaultAppBar] method!
   IconButton getSearchAction(BuildContext context) {
     return new IconButton(
-      icon: new Icon(Icons.search),
-      onPressed: () {
-        beginSearch(context);
-      }
+        icon: new Icon(Icons.search),
+        onPressed: () {
+          beginSearch(context);
+        }
     );
   }
 
