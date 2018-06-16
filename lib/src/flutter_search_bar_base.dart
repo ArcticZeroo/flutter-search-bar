@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 
 typedef AppBar AppBarCallback(BuildContext context);
 typedef void TextFieldSubmitCallback(String value);
+typedef void TextFieldChangeCallback(String value);
 typedef void SetStateCallback(void fn());
 
 class SearchBar {
@@ -48,6 +49,9 @@ class SearchBar {
   /// The last built default AppBar used for colors and such.
   AppBar _defaultAppBar;
 
+  /// A callback which is invoked each time the text field's value changes
+  TextFieldChangeCallback onChanged;
+
   SearchBar({
     @required this.setState,
     @required this.buildDefaultAppBar,
@@ -58,7 +62,8 @@ class SearchBar {
     this.colorBackButton = true,
     this.closeOnSubmit = true,
     this.clearOnSubmit = true,
-    this.showClearButton = true
+    this.showClearButton = true,
+    this.onChanged
   }) {
     if (this.controller == null) {
       this.controller = new TextEditingController();
@@ -159,6 +164,7 @@ class SearchBar {
               ),
               border: null
           ),
+          onChanged: this.onChanged,
           onSubmitted: (String val) async {
             if (closeOnSubmit) {
               await Navigator.maybePop(context);
