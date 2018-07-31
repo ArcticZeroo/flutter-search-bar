@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-typedef AppBar AppBarCallback(BuildContext context);
+typedef Widget AppBarCallback(BuildContext context);
 typedef void TextFieldSubmitCallback(String value);
 typedef void TextFieldChangeCallback(String value);
 typedef void SetStateCallback(void fn());
@@ -35,22 +35,22 @@ class SearchBar {
   final bool showClearButton;
 
   /// What the hintText on the search bar should be. Defaults to 'Search'.
-  String hintText;
+  final String hintText;
+
+  /// Whether search is currently active.
+  final ValueNotifier<bool> isSearching = new ValueNotifier(false);
+
+  /// A callback which is invoked each time the text field's value changes
+  final TextFieldChangeCallback onChanged;
 
   /// The controller to be used in the textField.
   TextEditingController controller;
-
-  /// Whether search is currently active.
-  bool _isSearching = false;
 
   /// Whether the clear button should be active (fully colored) or inactive (greyed out)
   bool _clearActive = false;
 
   /// The last built default AppBar used for colors and such.
   AppBar _defaultAppBar;
-
-  /// A callback which is invoked each time the text field's value changes
-  TextFieldChangeCallback onChanged;
 
   SearchBar({
     @required this.setState,
@@ -96,23 +96,21 @@ class SearchBar {
     });
   }
 
-  /// Whether search is currently active.
-  bool get isSearching => _isSearching;
-
   /// Initializes the search bar.
   ///
   /// This adds a new route that listens for onRemove (and stops the search when that happens), and then calls [setState] to rebuild and start the search.
   void beginSearch(context) {
-    ModalRoute.of(context).addLocalHistoryEntry(new LocalHistoryEntry(
-      onRemove: () {
-        setState(() {
-          _isSearching = false;
-        });
-      }
-    ));
+    ModalRoute.of(context).addLocalHistoryEntry(
+        new LocalHistoryEntry(
+            onRemove: () {
+              setState(() {
+                isSearching.value = false;
+              });
+            }
+        ));
 
     setState(() {
-      _isSearching = true;
+      isSearching.value = true;
     });
   }
 
@@ -144,41 +142,41 @@ class SearchBar {
 
     return new AppBar(
       leading: new BackButton(
-        color: buttonColor
+          color: buttonColor
       ),
       backgroundColor: barColor,
       title: new Directionality(
-        textDirection: Directionality.of(context),
-        child: new TextField(
-          key: new Key('SearchBarTextField'),
-          keyboardType: TextInputType.text,
-          style: new TextStyle(
-              color: textColor,
-              fontSize: 16.0
-          ),
-          decoration: new InputDecoration(
-              hintText: hintText,
-              hintStyle: new TextStyle(
-                  color: textColor,
-                  fontSize: 16.0
-              ),
-              border: null
-          ),
-          onChanged: this.onChanged,
-          onSubmitted: (String val) async {
-            if (closeOnSubmit) {
-              await Navigator.maybePop(context);
-            }
+          textDirection: Directionality.of(context),
+          child: new TextField(
+            key: new Key('SearchBarTextField'),
+            keyboardType: TextInputType.text,
+            style: new TextStyle(
+                color: textColor,
+                fontSize: 16.0
+            ),
+            decoration: new InputDecoration(
+                hintText: hintText,
+                hintStyle: new TextStyle(
+                    color: textColor,
+                    fontSize: 16.0
+                ),
+                border: null
+            ),
+            onChanged: this.onChanged,
+            onSubmitted: (String val) async {
+              if (closeOnSubmit) {
+                await Navigator.maybePop(context);
+              }
 
-            if (clearOnSubmit) {
-              controller.clear();
-            }
+              if (clearOnSubmit) {
+                controller.clear();
+              }
 
-            onSubmitted(val);
-          },
-          autofocus: true,
-          controller: controller,
-        )
+              onSubmitted(val);
+            },
+            autofocus: true,
+            controller: controller,
+          )
       ),
       actions: !showClearButton ? null : <Widget>[
         // Show an icon if clear is not active, so there's no ripple on tap
@@ -195,15 +193,15 @@ class SearchBar {
   /// Put this inside your [buildDefaultAppBar] method!
   IconButton getSearchAction(BuildContext context) {
     return new IconButton(
-      icon: new Icon(Icons.search),
-      onPressed: () {
-        beginSearch(context);
-      }
+        icon: new Icon(Icons.search),
+        onPressed: () {
+          beginSearch(context);
+        }
     );
   }
 
-  /// Returns an AppBar based on the value of [_isSearching]
+  /// Returns an AppBar based on the value of [isSearching]
   AppBar build(BuildContext context) {
-    return _isSearching ? buildSearchBar(context) : buildAppBar(context);
+    return isSearching.value ? buildSearchBar(context) : buildAppBar(context);
   }
 }

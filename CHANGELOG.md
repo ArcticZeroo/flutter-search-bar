@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.5 
+- SearchBar's app bar callback is now less strict, and allows any widget to be returned.
+- Many variables are now final
+- isSearching is a new property on SearchBar, and it's a ValueNotifier. Don't change the value on it yourself or things might be screwed up.
+
+## 2.0.4
+- Added SearchBar.onChanged event which can be set in search bar initialization
+
 ## 2.0.3
 - SearchBar.hintText is no longer final or required so you can now assign it values after initialization (e.g. for i18n)
 
