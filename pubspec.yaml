@@ -5,7 +5,7 @@ homepage: https://frozor.io
 author: Spencer <spencer@frozor.io>
 
 environment:
-  sdk: '>=1.20.1 <=2.0.0'
+  sdk: '>=1.20.1 <=3.0.0'
 
 dependencies:
   flutter:
