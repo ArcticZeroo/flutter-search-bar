@@ -40,7 +40,10 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
         inBar: false,
         buildDefaultAppBar: buildAppBar,
         setState: setState,
-        onSubmitted: onSubmitted);
+        onSubmitted: onSubmitted,
+        onClosed: () {
+          print("closed");
+        });
   }
 
   @override

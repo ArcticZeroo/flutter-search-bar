@@ -28,6 +28,9 @@ class SearchBar {
   /// A void callback which takes a string as an argument, this is fired every time the search is submitted. Do what you want with the result.
   final TextFieldSubmitCallback onSubmitted;
 
+  /// A void callback which gets fired on close button press.
+  final VoidCallback onClosed;
+
   /// Since this should be inside of a State class, just pass setState to this.
   final SetStateCallback setState;
 
@@ -63,7 +66,8 @@ class SearchBar {
     this.closeOnSubmit = true,
     this.clearOnSubmit = true,
     this.showClearButton = true,
-    this.onChanged
+    this.onChanged,
+    this.onClosed
   }) {
     if (this.controller == null) {
       this.controller = new TextEditingController();
@@ -141,9 +145,19 @@ class SearchBar {
     Color textColor = inBar ? Colors.white70 : Colors.black54;
 
     return new AppBar(
-      leading: new BackButton(
-          color: buttonColor
-      ),
+      leading: IconButton(
+          icon: const BackButtonIcon(),
+          color: buttonColor,
+          tooltip: MaterialLocalizations
+              .of(context)
+              .backButtonTooltip,
+          onPressed: () {
+            if (onClosed != null) {
+              onClosed();
+            }
+            controller.clear();
+            Navigator.maybePop(context);
+          }),
       backgroundColor: barColor,
       title: new Directionality(
           textDirection: Directionality.of(context),

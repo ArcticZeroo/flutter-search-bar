@@ -2,7 +2,8 @@ name: example
 description: An example for the flutter_search_bar module
 
 dependencies:
-  flutter_search_bar: any
+  flutter_search_bar:
+    path: ../
   flutter:
     sdk: flutter
 
