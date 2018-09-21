@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.7
+- Added SearchBar.onClosed handler for closing of the search bar (it doesn't fire when submitted, only cancelled)
+
+## 2.0.6
+- Updated to Dart 2
+
 ## 2.0.5 
 - SearchBar's app bar callback is now less strict, and allows any widget to be returned.
 - Many variables are now final
