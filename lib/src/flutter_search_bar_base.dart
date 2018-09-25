@@ -205,12 +205,10 @@ class SearchBar {
   /// Returns an [IconButton] suitable for an Action
   ///
   /// Put this inside your [buildDefaultAppBar] method!
-  IconButton getSearchAction(BuildContext context) {
+  IconButton getSearchAction(BuildContext context, bool searchEnabled) {
     return new IconButton(
         icon: new Icon(Icons.search),
-        onPressed: () {
-          beginSearch(context);
-        }
+        onPressed: searchEnabled ? () => beginSearch(context) : null
     );
   }
 
