@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_search_bar/flutter_search_bar.dart';
 
@@ -22,12 +24,13 @@ class SearchBarDemoHome extends StatefulWidget {
 
 class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
   SearchBar searchBar;
+  bool searchEnabled = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   AppBar buildAppBar(BuildContext context) {
     return new AppBar(
         title: new Text('Search Bar Demo'),
-        actions: [searchBar.getSearchAction(context)]);
+        actions: [searchBar.getSearchAction(context, searchEnabled)]);
   }
 
   void onSubmitted(String value) {
@@ -48,11 +51,20 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
 
   @override
   Widget build(BuildContext context) {
+    enableSearchAfterTenSeconds();
     return new Scaffold(
       appBar: searchBar.build(context),
       key: _scaffoldKey,
       body: new Center(
           child: new Text("Don't look at me! Press the search button!")),
     );
+  }
+
+  void enableSearchAfterTenSeconds() {
+    Future.delayed(Duration(seconds: 10), () {
+      setState(() {
+        searchEnabled = true;
+      });
+    });
   }
 }
