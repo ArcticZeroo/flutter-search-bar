@@ -28,6 +28,9 @@ class SearchBar {
   /// A void callback which gets fired on close button press.
   final VoidCallback onClosed;
 
+  /// A callback which is fired when clear button is pressed.
+  final VoidCallback onCleared;
+
   /// Since this should be inside of a State class, just pass setState to this.
   final SetStateCallback setState;
 
@@ -63,7 +66,8 @@ class SearchBar {
     this.clearOnSubmit = true,
     this.showClearButton = true,
     this.onChanged,
-    this.onClosed
+    this.onClosed,
+    this.onCleared,
   }) {
     if (this.controller == null) {
       this.controller = new TextEditingController();
@@ -141,9 +145,7 @@ class SearchBar {
               .of(context)
               .backButtonTooltip,
           onPressed: () {
-            if (onClosed != null) {
-              onClosed();
-            }
+            onClosed?.call();
             controller.clear();
             Navigator.maybePop(context);
           }),
@@ -171,8 +173,7 @@ class SearchBar {
               if (clearOnSubmit) {
                 controller.clear();
               }
-
-              onSubmitted(val);
+              onSubmitted?.call(val);
             },
             autofocus: true,
             controller: controller,
@@ -184,7 +185,10 @@ class SearchBar {
             icon: new Icon(Icons.clear),
             color: inBar ? null : buttonColor,
             disabledColor: inBar ? null : theme.disabledColor,
-            onPressed: !_clearActive ? null : () { controller.clear(); })
+            onPressed: !_clearActive ? null : () {
+              onCleared?.call();
+              controller.clear();
+            }),
       ],
     );
   }

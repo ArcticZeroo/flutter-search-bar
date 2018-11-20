@@ -41,6 +41,9 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
         buildDefaultAppBar: buildAppBar,
         setState: setState,
         onSubmitted: onSubmitted,
+        onCleared: () {
+          print("cleared");
+        },
         onClosed: () {
           print("closed");
         });
