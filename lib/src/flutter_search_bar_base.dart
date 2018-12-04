@@ -13,9 +13,6 @@ class SearchBar {
   /// Whether the search should take place "in the existing search bar", meaning whether it has the same background or a flipped one. Defaults to true.
   final bool inBar;
 
-  /// Whether the back button should be colored, if this is false the back button will be Colors.grey.shade400
-  final bool colorBackButton;
-
   /// Whether or not the search bar should close on submit. Defaults to true.
   final bool closeOnSubmit;
 
@@ -62,7 +59,6 @@ class SearchBar {
     this.controller,
     this.hintText = 'Search',
     this.inBar = true,
-    this.colorBackButton = true,
     this.closeOnSubmit = true,
     this.clearOnSubmit = true,
     this.showClearButton = true,
@@ -135,14 +131,7 @@ class SearchBar {
   ///
   AppBar buildSearchBar(BuildContext context) {
     ThemeData theme = Theme.of(context);
-
-    Color barColor = inBar ? _defaultAppBar.backgroundColor : theme.canvasColor;
-
-    // Don't provide a color (make it white) if it's in the bar, otherwise color it or set it to grey.
-    Color buttonColor = inBar ? null : (colorBackButton ? _defaultAppBar.backgroundColor ?? theme.primaryColor ?? Colors.grey.shade400 : Colors.grey.shade400);
-    Color buttonDisabledColor = inBar ? new Color.fromRGBO(255, 255, 255, 0.25) : Colors.grey.shade300;
-
-    Color textColor = inBar ? Colors.white70 : Colors.black54;
+    Color buttonColor = inBar ? null : theme.iconTheme.color;
 
     return new AppBar(
       leading: IconButton(
@@ -158,23 +147,20 @@ class SearchBar {
             controller.clear();
             Navigator.maybePop(context);
           }),
-      backgroundColor: barColor,
+      backgroundColor: inBar ? null : theme.canvasColor,
       title: new Directionality(
           textDirection: Directionality.of(context),
           child: new TextField(
             key: new Key('SearchBarTextField'),
             keyboardType: TextInputType.text,
-            style: new TextStyle(
-                color: textColor,
-                fontSize: 16.0
-            ),
             decoration: new InputDecoration(
                 hintText: hintText,
-                hintStyle: new TextStyle(
-                    color: textColor,
-                    fontSize: 16.0
+                hintStyle: inBar
+                    ? null
+                    : new TextStyle(
+                  color: theme.textTheme.display1.color,
                 ),
-                border: null
+                border: InputBorder.none
             ),
             onChanged: this.onChanged,
             onSubmitted: (String val) async {
@@ -195,8 +181,9 @@ class SearchBar {
       actions: !showClearButton ? null : <Widget>[
         // Show an icon if clear is not active, so there's no ripple on tap
         new IconButton(
-            icon: new Icon(Icons.clear, color: _clearActive ? buttonColor : buttonDisabledColor),
-            disabledColor: buttonDisabledColor,
+            icon: new Icon(Icons.clear),
+            color: inBar ? null : buttonColor,
+            disabledColor: inBar ? null : theme.disabledColor,
             onPressed: !_clearActive ? null : () { controller.clear(); })
       ],
     );
