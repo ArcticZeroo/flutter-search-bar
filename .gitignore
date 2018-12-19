@@ -106,3 +106,4 @@ screenshots/
 workspace.xml
 example/
 .idea/libraries/Dart_Packages.xml
+.idea/libraries/Dart_SDK.xml

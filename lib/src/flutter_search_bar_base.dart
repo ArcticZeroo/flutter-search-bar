@@ -41,7 +41,7 @@ class SearchBar {
   final String hintText;
 
   /// Whether search is currently active.
-  final ValueNotifier<bool> isSearching = new ValueNotifier(false);
+  final ValueNotifier<bool> isSearching;
 
   /// A callback which is invoked each time the text field's value changes
   final TextFieldChangeCallback onChanged;
@@ -67,11 +67,14 @@ class SearchBar {
     this.clearOnSubmit = true,
     this.showClearButton = true,
     this.onChanged,
-    this.onClosed
-  }) {
+    this.onClosed,
+    bool initialValue = false
+  }) : isSearching = new ValueNotifier(initialValue) {
     if (this.controller == null) {
       this.controller = new TextEditingController();
     }
+
+    this.isSearching.addListener(() => setState(() {}));
 
     // Don't waste resources on listeners for the text controller if the dev
     // doesn't want a clear button anyways in the search bar
