@@ -174,7 +174,7 @@ class SearchBar {
                     color: textColor,
                     fontSize: 16.0
                 ),
-                border: null
+                border: InputBorder.none
             ),
             onChanged: this.onChanged,
             onSubmitted: (String val) async {
