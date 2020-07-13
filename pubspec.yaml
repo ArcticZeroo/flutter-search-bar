@@ -5,12 +5,12 @@ homepage: https://frozor.io
 author: Spencer <spencer@frozor.io>
 
 environment:
-  sdk: '>=1.20.1 <=3.0.0'
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.0.5
+  meta: ^1.1.8
 
 flutter:
   uses-material-design: true
