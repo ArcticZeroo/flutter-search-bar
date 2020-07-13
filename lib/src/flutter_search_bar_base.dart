@@ -41,7 +41,7 @@ class SearchBar {
   final String hintText;
 
   /// Whether search is currently active.
-  final ValueNotifier<bool> isSearching = new ValueNotifier(false);
+  final ValueNotifier<bool> isSearching = ValueNotifier(false);
 
   /// A callback which is invoked each time the text field's value changes
   final TextFieldChangeCallback onChanged;
@@ -70,7 +70,7 @@ class SearchBar {
     this.onCleared,
   }) {
     if (this.controller == null) {
-      this.controller = new TextEditingController();
+      this.controller = TextEditingController();
     }
 
     // Don't waste resources on listeners for the text controller if the dev
@@ -102,16 +102,13 @@ class SearchBar {
 
   /// Initializes the search bar.
   ///
-  /// This adds a new route that listens for onRemove (and stops the search when that happens), and then calls [setState] to rebuild and start the search.
+  /// This adds a route that listens for onRemove (and stops the search when that happens), and then calls [setState] to rebuild and start the search.
   void beginSearch(context) {
-    ModalRoute.of(context).addLocalHistoryEntry(
-        new LocalHistoryEntry(
-            onRemove: () {
-              setState(() {
-                isSearching.value = false;
-              });
-            }
-        ));
+    ModalRoute.of(context).addLocalHistoryEntry(LocalHistoryEntry(onRemove: () {
+      setState(() {
+        isSearching.value = false;
+      });
+    }));
 
     setState(() {
       isSearching.value = true;
@@ -137,59 +134,62 @@ class SearchBar {
     ThemeData theme = Theme.of(context);
     Color buttonColor = inBar ? null : theme.iconTheme.color;
 
-    return new AppBar(
+    return AppBar(
       leading: IconButton(
           icon: const BackButtonIcon(),
           color: buttonColor,
-          tooltip: MaterialLocalizations
-              .of(context)
-              .backButtonTooltip,
+          tooltip: MaterialLocalizations.of(context).backButtonTooltip,
           onPressed: () {
             onClosed?.call();
             controller.clear();
             Navigator.maybePop(context);
           }),
       backgroundColor: inBar ? null : theme.canvasColor,
-      title: new Directionality(
-          textDirection: Directionality.of(context),
-          child: new TextField(
-            key: new Key('SearchBarTextField'),
-            keyboardType: TextInputType.text,
-            decoration: new InputDecoration(
-                hintText: hintText,
-                hintStyle: inBar
-                    ? null
-                    : new TextStyle(
-                  color: theme.textTheme.display1.color,
-                ),
-                border: InputBorder.none
-            ),
-            onChanged: this.onChanged,
-            onSubmitted: (String val) async {
-              if (closeOnSubmit) {
-                await Navigator.maybePop(context);
-              }
+      title: Directionality(
+        textDirection: Directionality.of(context),
+        child: TextField(
+          key: Key('SearchBarTextField'),
+          keyboardType: TextInputType.text,
+          decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: inBar
+                  ? null
+                  : TextStyle(
+                      color: theme.textTheme.headline4.color,
+                    ),
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              border: InputBorder.none),
+          onChanged: this.onChanged,
+          onSubmitted: (String val) async {
+            if (closeOnSubmit) {
+              await Navigator.maybePop(context);
+            }
 
-              if (clearOnSubmit) {
-                controller.clear();
-              }
-              onSubmitted?.call(val);
-            },
-            autofocus: true,
-            controller: controller,
-          )
-      ),
-      actions: !showClearButton ? null : <Widget>[
-        // Show an icon if clear is not active, so there's no ripple on tap
-        new IconButton(
-            icon: new Icon(Icons.clear),
-            color: inBar ? null : buttonColor,
-            disabledColor: inBar ? null : theme.disabledColor,
-            onPressed: !_clearActive ? null : () {
-              onCleared?.call();
+            if (clearOnSubmit) {
               controller.clear();
-            }),
-      ],
+            }
+            onSubmitted?.call(val);
+          },
+          autofocus: true,
+          controller: controller,
+        ),
+      ),
+      actions: !showClearButton
+          ? null
+          : <Widget>[
+              // Show an icon if clear is not active, so there's no ripple on tap
+              IconButton(
+                  icon: Icon(Icons.clear),
+                  color: inBar ? null : buttonColor,
+                  disabledColor: inBar ? null : theme.disabledColor,
+                  onPressed: !_clearActive
+                      ? null
+                      : () {
+                          onCleared?.call();
+                          controller.clear();
+                        }),
+            ],
     );
   }
 
@@ -197,12 +197,11 @@ class SearchBar {
   ///
   /// Put this inside your [buildDefaultAppBar] method!
   IconButton getSearchAction(BuildContext context) {
-    return new IconButton(
-        icon: new Icon(Icons.search),
+    return IconButton(
+        icon: Icon(Icons.search),
         onPressed: () {
           beginSearch(context);
-        }
-    );
+        });
   }
 
   /// Returns an AppBar based on the value of [isSearching]
