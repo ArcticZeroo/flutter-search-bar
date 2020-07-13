@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+- Updated dart sdk to the range currently default through flutter
+- Added OnCleared callback which does as expected -- called when the user clears their input
+- Explicitly disabled all borders, and fixes some flickering problems
+- Some minor code improvements (remove `new`, remove some ignored files)
+
 ## 2.0.7
 - Added SearchBar.onClosed handler for closing of the search bar (it doesn't fire when submitted, only cancelled)
 

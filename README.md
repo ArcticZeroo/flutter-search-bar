@@ -53,11 +53,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
 This will create an AppBar with a search button as its only action, and on press the AppBar will turn white and have a TextField inside, allowing user input. Once the user has input something and pressed the "enter" button on their keyboard, it will close and the value will be printed to the debugger.
 
+## SearchBar vs Flutter's showSearch + SearchDelegate
+
+
+
 ## Using SearchBar
 
 Essentially, this class returns two different app bars based on whether search is active. Colors from the most recently built "default" app bar are used to color the search bar.
 
-I may refer to the two different app bars as **default** and **search**. Default is, as may be inferred, the _default_ app bar. It shows up when you open your app, and is the "default state". Once its search button has been pressed, the search app bar appears, where the user can put in input and submit a field. 
+I may refer to the two different app bars as **default** and **search**. Default is, as may be inferred, the _default_ app bar. It shows up when you open your app, and is the "default state". Once its search button has been pressed, the search app bar appears, where the user can put in input and submit a field.
+
+This documentation may be slightly outdated. It will soon be generated with dartdoc instead of being manual (not really sure why it wasn't that way from the start).
 
 ### TypeDefs
 
