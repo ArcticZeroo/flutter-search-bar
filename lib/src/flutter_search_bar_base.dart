@@ -142,7 +142,7 @@ class SearchBar {
           : theme.textTheme.headline4.color,
     );
     TextStyle inputStyle = inBar ? theme.appBarTheme?.textTheme?.subtitle1 ?? theme.primaryTextTheme?.subtitle1 : null;
-    Color buttonColor = inBar ? inputStyle.color : theme.iconTheme.color;
+    Color buttonColor = inBar ? inputStyle?.color : theme.iconTheme.color;
 
     // This is a bit of a hack, but follows the default initialization of disabled color in a material theme.
     // If we're in the app bar, we want to invert the default disabled color, unless one is provided.
