@@ -136,13 +136,13 @@ class SearchBar {
   ///
   AppBar buildSearchBar(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    Color buttonColor = inBar ? null : theme.iconTheme.color;
     TextStyle hintStyle = TextStyle(
       color: inBar
           ? theme.appBarTheme?.textTheme?.headline4?.color ?? theme.primaryTextTheme?.headline4?.color
           : theme.textTheme.headline4.color,
     );
     TextStyle inputStyle = inBar ? theme.appBarTheme?.textTheme?.subtitle1 ?? theme.primaryTextTheme?.subtitle1 : null;
+    Color buttonColor = inBar ? inputStyle.color : theme.iconTheme.color;
 
     // This is a bit of a hack, but follows the default initialization of disabled color in a material theme.
     // If we're in the app bar, we want to invert the default disabled color, unless one is provided.
@@ -194,7 +194,7 @@ class SearchBar {
               // Show an icon if clear is not active, so there's no ripple on tap
               IconButton(
                   icon: Icon(Icons.clear),
-                  color: inBar ? null : buttonColor,
+                  color: buttonColor,
                   disabledColor: disabledColor,
                   onPressed: !_clearActive
                       ? null
