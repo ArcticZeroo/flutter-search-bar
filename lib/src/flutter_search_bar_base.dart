@@ -134,7 +134,9 @@ class SearchBar {
     ThemeData theme = Theme.of(context);
     Color buttonColor = inBar ? null : theme.iconTheme.color;
     TextStyle hintStyle = TextStyle(
-      color: theme.appBarTheme?.textTheme?.headline4?.color ?? theme.primaryTextTheme?.headline4?.color,
+      color: inBar
+          ? theme.appBarTheme?.textTheme?.headline4?.color ?? theme.primaryTextTheme?.headline4?.color
+          : theme.textTheme.headline4.color,
     );
     TextStyle inputStyle = inBar ? theme.appBarTheme?.textTheme?.subtitle1 ?? theme.primaryTextTheme?.subtitle1 : null;
 
