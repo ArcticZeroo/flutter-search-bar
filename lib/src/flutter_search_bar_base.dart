@@ -133,6 +133,10 @@ class SearchBar {
   AppBar buildSearchBar(BuildContext context) {
     ThemeData theme = Theme.of(context);
     Color buttonColor = inBar ? null : theme.iconTheme.color;
+    TextStyle hintStyle = TextStyle(
+      color: theme.appBarTheme?.textTheme?.headline4?.color ?? theme.primaryTextTheme?.headline4?.color,
+    );
+    TextStyle inputStyle = inBar ? theme.appBarTheme?.textTheme?.subtitle1 ?? theme.primaryTextTheme?.subtitle1 : null;
 
     return AppBar(
       leading: IconButton(
@@ -152,14 +156,12 @@ class SearchBar {
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: inBar
-                  ? null
-                  : TextStyle(
-                      color: theme.textTheme.headline4.color,
-                    ),
+              hintStyle: hintStyle,
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
               border: InputBorder.none),
+          style: inputStyle,
+          cursorColor: inputStyle?.color,
           onChanged: this.onChanged,
           onSubmitted: (String val) async {
             if (closeOnSubmit) {
