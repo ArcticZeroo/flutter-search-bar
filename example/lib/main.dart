@@ -32,7 +32,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
 
   _SearchBarDemoHomeState() {
     searchBar = new SearchBar(
-        inBar: true,
+        inBar: false,
         buildDefaultAppBar: buildAppBar,
         setState: setState,
         onSubmitted: onSubmitted,
