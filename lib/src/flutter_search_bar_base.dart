@@ -46,6 +46,9 @@ class SearchBar {
   /// A callback which is invoked each time the text field's value changes
   final TextFieldChangeCallback onChanged;
 
+  /// The color to use when the clear button is disabled
+  final Color disabledColor;
+
   /// The controller to be used in the textField.
   TextEditingController controller;
 
@@ -68,6 +71,7 @@ class SearchBar {
     this.onChanged,
     this.onClosed,
     this.onCleared,
+    this.disabledColor,
   }) {
     if (this.controller == null) {
       this.controller = TextEditingController();
@@ -132,7 +136,18 @@ class SearchBar {
   ///
   AppBar buildSearchBar(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    Color buttonColor = inBar ? null : theme.iconTheme.color;
+    TextStyle hintStyle = TextStyle(
+      color: inBar
+          ? theme.appBarTheme?.textTheme?.headline4?.color ?? theme.primaryTextTheme?.headline4?.color
+          : theme.textTheme.headline4.color,
+    );
+    TextStyle inputStyle = inBar ? theme.appBarTheme?.textTheme?.subtitle1 ?? theme.primaryTextTheme?.subtitle1 : null;
+    Color buttonColor = inBar ? inputStyle?.color : theme.iconTheme?.color;
+
+    // This is a bit of a hack, but follows the default initialization of disabled color in a material theme.
+    // If we're in the app bar, we want to invert the default disabled color, unless one is provided.
+    Color disabledColor = this.disabledColor ??
+        (inBar ? (theme.disabledColor == Colors.black38 ? Colors.white38 : Colors.black38) : theme.disabledColor);
 
     return AppBar(
       leading: IconButton(
@@ -152,14 +167,12 @@ class SearchBar {
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: inBar
-                  ? null
-                  : TextStyle(
-                      color: theme.textTheme.headline4.color,
-                    ),
+              hintStyle: hintStyle,
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
               border: InputBorder.none),
+          style: inputStyle,
+          cursorColor: inputStyle?.color,
           onChanged: this.onChanged,
           onSubmitted: (String val) async {
             if (closeOnSubmit) {
@@ -181,8 +194,8 @@ class SearchBar {
               // Show an icon if clear is not active, so there's no ripple on tap
               IconButton(
                   icon: Icon(Icons.clear),
-                  color: inBar ? null : buttonColor,
-                  disabledColor: inBar ? null : theme.disabledColor,
+                  color: buttonColor,
+                  disabledColor: disabledColor,
                   onPressed: !_clearActive
                       ? null
                       : () {
