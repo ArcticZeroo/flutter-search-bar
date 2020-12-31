@@ -180,7 +180,7 @@ class SearchBar {
           : <Widget>[
               // Show an icon if clear is not active, so there's no ripple on tap
               IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: Icon(Icons.clear, semanticLabel: "Clear"),
                   color: inBar ? null : buttonColor,
                   disabledColor: inBar ? null : theme.disabledColor,
                   onPressed: !_clearActive
@@ -198,7 +198,7 @@ class SearchBar {
   /// Put this inside your [buildDefaultAppBar] method!
   IconButton getSearchAction(BuildContext context) {
     return IconButton(
-        icon: Icon(Icons.search),
+        icon: Icon(Icons.search, semanticLabel: "Search"),
         onPressed: () {
           beginSearch(context);
         });
