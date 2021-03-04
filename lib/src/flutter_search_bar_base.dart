@@ -46,6 +46,9 @@ class SearchBar {
   /// A callback which is invoked each time the text field's value changes
   final TextFieldChangeCallback onChanged;
 
+  /// Whether or not the search bar should show up number keyboard. Defaults to 'false'.
+  final bool numberKeyboard;
+
   /// The controller to be used in the textField.
   TextEditingController controller;
 
@@ -68,6 +71,7 @@ class SearchBar {
     this.onChanged,
     this.onClosed,
     this.onCleared,
+    this.numberKeyboard = false,
   }) {
     if (this.controller == null) {
       this.controller = TextEditingController();
@@ -149,7 +153,9 @@ class SearchBar {
         textDirection: Directionality.of(context),
         child: TextField(
           key: Key('SearchBarTextField'),
-          keyboardType: TextInputType.text,
+          keyboardType: numberKeyboard ?
+              TextInputType.number :
+              TextInputType.text,
           decoration: InputDecoration(
               hintText: hintText,
               hintStyle: inBar
