@@ -46,7 +46,7 @@ class SearchBar {
   /// A callback which is invoked each time the text field's value changes
   final TextFieldChangeCallback onChanged;
 
-  /// What the keyboard type on the search bar. Defaults to 'TextInputType.text'.
+  /// The type of keyboard to use for editing the search bar text. Defaults to 'TextInputType.text'.
   final TextInputType keyboardType;
 
   /// The controller to be used in the textField.
