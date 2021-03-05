@@ -46,6 +46,9 @@ class SearchBar {
   /// A callback which is invoked each time the text field's value changes
   final TextFieldChangeCallback onChanged;
 
+  /// The type of keyboard to use for editing the search bar text. Defaults to 'TextInputType.text'.
+  final TextInputType keyboardType;
+
   /// The controller to be used in the textField.
   TextEditingController controller;
 
@@ -68,6 +71,7 @@ class SearchBar {
     this.onChanged,
     this.onClosed,
     this.onCleared,
+    this.keyboardType = TextInputType.text,
   }) {
     if (this.controller == null) {
       this.controller = TextEditingController();
@@ -149,7 +153,7 @@ class SearchBar {
         textDirection: Directionality.of(context),
         child: TextField(
           key: Key('SearchBarTextField'),
-          keyboardType: TextInputType.text,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
               hintText: hintText,
               hintStyle: inBar
