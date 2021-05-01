@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.0
+
+- Added support for dart's null-safety
+    - Consequently, updated dart sdk to the minimum version required for null safety
+- Clear and search icons now have semantic labels for better accessibility
+- An option for the keyboard input type has been added
+    
+There is a high likelihood that any additional updates to this package will involve a major
+restructure of some kind, but if there are any major issues before then, I may walk back on my
+"promise".
+
 ## 2.1.0
 - Updated dart sdk to the range currently default through flutter
 - Added OnCleared callback which does as expected -- called when the user clears their input

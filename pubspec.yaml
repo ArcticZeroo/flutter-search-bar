@@ -1,6 +1,6 @@
 name: flutter_search_bar
 description: A (mostly) automatic search bar inside an AppBar for flutter
-version: 2.1.0
+version: 3.0.0-dev.1
 homepage: https://frozor.io
 repository: https://github.com/ArcticZeroo/flutter-search-bar
 author: Spencer <spencer@frozor.io>
