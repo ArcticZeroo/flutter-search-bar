@@ -21,8 +21,8 @@ class SearchBarDemoHome extends StatefulWidget {
 }
 
 class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
-  late SearchBar searchBar;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  late SearchBar searchBar;
 
   AppBar buildAppBar(BuildContext context) {
     return new AppBar(
