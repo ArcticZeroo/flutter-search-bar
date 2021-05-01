@@ -120,10 +120,12 @@ class SearchBar {
   /// Builds, saves and returns the default app bar.
   ///
   /// This calls the [buildDefaultAppBar] provided in the constructor, and saves it to [_defaultAppBar].
-  AppBar? buildAppBar(BuildContext context) {
-    _defaultAppBar = buildDefaultAppBar(context) as AppBar?;
+  AppBar buildAppBar(BuildContext context) {
+    var appBar = buildDefaultAppBar(context) as AppBar;
 
-    return _defaultAppBar;
+    _defaultAppBar = appBar;
+
+    return appBar;
   }
 
   /// Builds the search bar!
@@ -207,7 +209,7 @@ class SearchBar {
   }
 
   /// Returns an AppBar based on the value of [isSearching]
-  AppBar? build(BuildContext context) {
+  AppBar build(BuildContext context) {
     return isSearching.value ? buildSearchBar(context) : buildAppBar(context);
   }
 }
