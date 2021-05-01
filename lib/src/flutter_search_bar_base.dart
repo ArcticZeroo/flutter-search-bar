@@ -118,7 +118,7 @@ class SearchBar {
   ///
   /// This calls the [buildDefaultAppBar] provided in the constructor.
   AppBar buildAppBar(BuildContext context) {
-    return buildAppBar(context);
+    return buildDefaultAppBar(context) as AppBar;
   }
 
   /// Builds the search bar!
