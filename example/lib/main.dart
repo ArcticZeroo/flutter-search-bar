@@ -31,8 +31,16 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
   }
 
   void onSubmitted(String value) {
-    setState(() => _scaffoldKey.currentState!
-        .showSnackBar(new SnackBar(content: new Text('You wrote $value!'))));
+    setState(() {
+      var context = _scaffoldKey.currentContext;
+
+      if (context == null) {
+        return;
+      }
+
+      ScaffoldMessenger.maybeOf(context)
+          ?.showSnackBar(new SnackBar(content: new Text('You wrote "$value"!')));
+    });
   }
 
   _SearchBarDemoHomeState() {
@@ -42,10 +50,10 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
         setState: setState,
         onSubmitted: onSubmitted,
         onCleared: () {
-          print("cleared");
+          print("Search bar has been cleared");
         },
         onClosed: () {
-          print("closed");
+          print("Search bar has been closed");
         });
   }
 
