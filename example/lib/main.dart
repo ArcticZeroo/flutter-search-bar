@@ -21,7 +21,7 @@ class SearchBarDemoHome extends StatefulWidget {
 }
 
 class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
-  SearchBar searchBar;
+  late SearchBar searchBar;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   AppBar buildAppBar(BuildContext context) {
@@ -31,7 +31,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome> {
   }
 
   void onSubmitted(String value) {
-    setState(() => _scaffoldKey.currentState
+    setState(() => _scaffoldKey.currentState!
         .showSnackBar(new SnackBar(content: new Text('You wrote $value!'))));
   }
 
