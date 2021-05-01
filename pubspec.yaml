@@ -6,7 +6,7 @@ repository: https://github.com/ArcticZeroo/flutter-search-bar
 author: Spencer <spencer@frozor.io>
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:

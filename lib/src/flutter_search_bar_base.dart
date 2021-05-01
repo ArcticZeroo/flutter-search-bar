@@ -23,13 +23,13 @@ class SearchBar {
   final AppBarCallback buildDefaultAppBar;
 
   /// A void callback which takes a string as an argument, this is fired every time the search is submitted. Do what you want with the result.
-  final TextFieldSubmitCallback onSubmitted;
+  final TextFieldSubmitCallback? onSubmitted;
 
   /// A void callback which gets fired on close button press.
-  final VoidCallback onClosed;
+  final VoidCallback? onClosed;
 
   /// A callback which is fired when clear button is pressed.
-  final VoidCallback onCleared;
+  final VoidCallback? onCleared;
 
   /// Since this should be inside of a State class, just pass setState to this.
   final SetStateCallback setState;
@@ -44,25 +44,22 @@ class SearchBar {
   final ValueNotifier<bool> isSearching = ValueNotifier(false);
 
   /// A callback which is invoked each time the text field's value changes
-  final TextFieldChangeCallback onChanged;
+  final TextFieldChangeCallback? onChanged;
 
   /// The type of keyboard to use for editing the search bar text. Defaults to 'TextInputType.text'.
   final TextInputType keyboardType;
 
   /// The controller to be used in the textField.
-  TextEditingController controller;
+  late TextEditingController controller;
 
   /// Whether the clear button should be active (fully colored) or inactive (greyed out)
   bool _clearActive = false;
 
-  /// The last built default AppBar used for colors and such.
-  AppBar _defaultAppBar;
-
   SearchBar({
-    @required this.setState,
-    @required this.buildDefaultAppBar,
+    required this.setState,
+    required this.buildDefaultAppBar,
     this.onSubmitted,
-    this.controller,
+    TextEditingController? controller,
     this.hintText = 'Search',
     this.inBar = true,
     this.closeOnSubmit = true,
@@ -73,9 +70,7 @@ class SearchBar {
     this.onCleared,
     this.keyboardType = TextInputType.text,
   }) {
-    if (this.controller == null) {
-      this.controller = TextEditingController();
-    }
+    this.controller = controller ?? new TextEditingController();
 
     // Don't waste resources on listeners for the text controller if the dev
     // doesn't want a clear button anyways in the search bar
@@ -108,7 +103,7 @@ class SearchBar {
   ///
   /// This adds a route that listens for onRemove (and stops the search when that happens), and then calls [setState] to rebuild and start the search.
   void beginSearch(context) {
-    ModalRoute.of(context).addLocalHistoryEntry(LocalHistoryEntry(onRemove: () {
+    ModalRoute.of(context)!.addLocalHistoryEntry(LocalHistoryEntry(onRemove: () {
       setState(() {
         isSearching.value = false;
       });
@@ -121,11 +116,9 @@ class SearchBar {
 
   /// Builds, saves and returns the default app bar.
   ///
-  /// This calls the [buildDefaultAppBar] provided in the constructor, and saves it to [_defaultAppBar].
+  /// This calls the [buildDefaultAppBar] provided in the constructor.
   AppBar buildAppBar(BuildContext context) {
-    _defaultAppBar = buildDefaultAppBar(context);
-
-    return _defaultAppBar;
+    return buildDefaultAppBar(context) as AppBar;
   }
 
   /// Builds the search bar!
@@ -136,7 +129,7 @@ class SearchBar {
   ///
   AppBar buildSearchBar(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    Color buttonColor = inBar ? null : theme.iconTheme.color;
+    Color? buttonColor = inBar ? null : theme.iconTheme.color;
 
     return AppBar(
       leading: IconButton(
@@ -159,7 +152,7 @@ class SearchBar {
               hintStyle: inBar
                   ? null
                   : TextStyle(
-                      color: theme.textTheme.headline4.color,
+                      color: theme.textTheme.headline4!.color,
                     ),
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
