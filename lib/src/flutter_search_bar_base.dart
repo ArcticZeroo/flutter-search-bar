@@ -55,9 +55,6 @@ class SearchBar {
   /// Whether the clear button should be active (fully colored) or inactive (greyed out)
   bool _clearActive = false;
 
-  /// The last built default AppBar used for colors and such.
-  AppBar? _defaultAppBar;
-
   SearchBar({
     required this.setState,
     required this.buildDefaultAppBar,
@@ -119,13 +116,9 @@ class SearchBar {
 
   /// Builds, saves and returns the default app bar.
   ///
-  /// This calls the [buildDefaultAppBar] provided in the constructor, and saves it to [_defaultAppBar].
+  /// This calls the [buildDefaultAppBar] provided in the constructor.
   AppBar buildAppBar(BuildContext context) {
-    var appBar = buildDefaultAppBar(context) as AppBar;
-
-    _defaultAppBar = appBar;
-
-    return appBar;
+    return buildAppBar(context);
   }
 
   /// Builds the search bar!
