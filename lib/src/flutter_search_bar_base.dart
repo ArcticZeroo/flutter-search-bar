@@ -11,7 +11,7 @@ typedef void SetStateCallback(void fn());
 
 class SearchBar {
   /// Whether the search should take place "in the existing search bar", meaning whether it has the same background or a flipped one. Defaults to true.
-  final bool inBar;
+  bool inBar;
 
   /// Whether or not the search bar should close on submit. Defaults to true.
   final bool closeOnSubmit;
@@ -35,7 +35,7 @@ class SearchBar {
   final SetStateCallback setState;
 
   /// Whether or not the search bar should add a clear input button, defaults to true.
-  final bool showClearButton;
+  bool showClearButton;
 
   /// What the hintText on the search bar should be. Defaults to 'Search'.
   final String hintText;
@@ -139,6 +139,11 @@ class SearchBar {
           onPressed: () {
             onClosed?.call();
             controller.clear();
+            setState((){
+              showClearButton = false;
+              inBar = false;
+              isSearching.value = false;
+            });
             Navigator.maybePop(context);
           }),
       backgroundColor: inBar ? null : theme.canvasColor,
@@ -185,6 +190,11 @@ class SearchBar {
                       : () {
                           onCleared?.call();
                           controller.clear();
+                          setState((){
+                            showClearButton = false;
+                            inBar = false;
+                            isSearching.value = false;
+                          });
                         }),
             ],
     );
