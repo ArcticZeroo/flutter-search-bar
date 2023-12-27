@@ -1,3 +1,9 @@
+# Archive Notice
+
+This repository is archived. 3.0.0 is the last version that I will publish.
+
+The SearchBar still works and it's pretty simple if you'd like to fork it. I just don't have the time to maintain it.
+
 # flutter_search_bar
 
 A simple and mostly automatic material search bar for flutter (dart).
@@ -65,5 +71,5 @@ Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: https://github.com/ArcticZeroo/flutter-search-bar
 
-We've recently added support for null-safety in 3.0.0-dev.1 -- if you find any issues, please 
+We've recently added support for null-safety in 3.0.0 -- if you find any issues, please 
 report them there!
