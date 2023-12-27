@@ -7,9 +7,7 @@
 - Clear and search icons now have semantic labels for better accessibility
 - An option for the keyboard input type has been added
     
-There is a high likelihood that any additional updates to this package will involve a major
-restructure of some kind, but if there are any major issues before then, I may walk back on my
-"promise".
+This package is now archived and will no longer receive additional updates. The good news is that this package will continue to work fine for the foreseeable future, and is easy to fork since it is a simple (one-file) library!
 
 ## 2.1.0
 - Updated dart sdk to the range currently default through flutter

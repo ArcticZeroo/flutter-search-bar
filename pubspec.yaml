@@ -3,15 +3,13 @@ description: A (mostly) automatic search bar inside an AppBar for flutter
 version: 3.0.0
 homepage: https://frozor.io
 repository: https://github.com/ArcticZeroo/flutter-search-bar
-author: Spencer <spencer@frozor.io>
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.1.8
 
 flutter:
   uses-material-design: true

@@ -2,7 +2,6 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 typedef Widget AppBarCallback(BuildContext context);
 typedef void TextFieldSubmitCallback(String value);
